@@ -30,12 +30,15 @@
 			</div>
 		</div>
 		<div class="form-container-center">
+			<?php if(isset($_SUBMIT['register-form'])):?>
+				<h>Thanks for registering!</h>
+			<?php endif;?>
 			<form method="POST" id="register-well" name="login-form">
 				<div class="form-group">
 					<i class="material-icons">&#xE853;</i>
 					<h3>Login</h3>
 					<br style="clear: both;">
-					<p id="loginjs-error"></p>
+					<p id="formjs-error"></p>
 					<br style="clear: both;">
 					<div class="form-group">
 						<label for="email">Email</label>

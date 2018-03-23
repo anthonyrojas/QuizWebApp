@@ -201,12 +201,28 @@ input{
 	color: red;
 }
 
-#loginjs-error{
+#formjs-error{
 	display: none;
 	color: white;
 	margin: auto;
 	border-radius: 0.5em;
+	padding: 0.5em 1em;	
+}
+
+#formjs-success{
+	display: inline-block;
+	color: white;
+	margin: auto;
+	border-radius: 0.5em;
 	padding: 0.5em 1em;
+	background: #00AF11;
+}
+
+#confirmPasswordText{
+	color: red;
+	font-weight: bold;
+	text-shadow: 0 0 1px black;
+	display: none;
 }
 
 @media only screen and (max-width: 480px){

@@ -32,7 +32,7 @@ window.onload = function(){
 			errorExists = true;
 		}
 		if(errorExists === true){
-			let loginErr = document.getElementById("loginjs-error");
+			let loginErr = document.getElementById("formjs-error");
 			loginErr.innerHTML = "Fill out the required fields with valid values.";
 			loginErr.style.display = "inline-block";
 			loginErr.style.backgroundColor = "#F35F5F";

@@ -19,6 +19,7 @@
 	<link rel="stylesheet" type="text/css" href="css/animate.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Titillium+Web:600" rel="stylesheet">
+	<script type="text/javascript" src="js/register.js"></script>
 </head>
 <body>
 	<?php include 'nav.php' ?>
@@ -29,9 +30,15 @@
 			</div>
 		</div>
 		<div class="form-container-center">
-			<form method="POST" class="fadeInUp" id="register-well">
+			<form method="POST" class="fadeInUp" id="register-well" name="register-form" onsubmit="return validateForm();" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 				<i class="material-icons">&#xE853;</i>
 				<h3>Register</h3>
+				<br style="clear: both;">
+				<?php if(isset($_POST['register'])): ?>
+					<p id="formjs-success">Thanks for signing up! <br> Please login with your credentials.</p>
+					<?php unset($_POST['register']); ?>
+				<?php endif; ?>
+				<p id="formjs-error"></p>
 				<br style="clear: both;">
 				<div class="form-group">
 					<label for="firstName">First Name</label>
@@ -56,10 +63,11 @@
 				<div class="form-group">
 					<label for="confirmPassword">Confirm Password</label>
 					<input type="password" name="confirmPassword" id="confirmPassword">
+					<small id="confirmPasswordText">Passwords do not match.</small>
 				</div>
 				<br style="clear: both;">
 				<div class="form-group">
-					<button type="submit" class="btn-submit" value="submit"><span class="btn-submit-text">Register</span></button>
+					<button type="submit" class="btn-submit" value="register user" name="register"><span class="btn-submit-text">Register</span></button>
 				</div>
 			</form>
 		</div>
