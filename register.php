@@ -1,5 +1,9 @@
 <?php
+	require_once 'config.php';
 	session_start();
+	if(isset($_SESSION['user'])){
+		header('Location: dashboard.php');
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,6 +40,22 @@
 				<br style="clear: both;">
 				<?php if(isset($_POST['register'])): ?>
 					<p id="formjs-success">Thanks for signing up! <br> Please login with your credentials.</p>
+					<?php
+						$connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+						if(mysqli_connect_errno()){
+							echo "Failed to connect to database";
+						}
+						else{
+							$firstName = mysqli_real_escape_string($connection, $_POST['firstName']);
+							$lastName = mysqli_real_escape_string($connection, $_POST['lastName']);
+							$email = mysqli_real_escape_string($connection, $_POST['email']);
+							$password = mysqli_real_escape_string($connection, $_POST['password']);
+							$password = password_hash($password, PASSWORD_BCRYPT);
+							$userInsertQuery = "INSERT INTO Users (firstName, lastName, email, password) VALUES ('$firstName', '$lastName', '$email', '$password')";
+							mysqli_query($connection, $userInsertQuery);
+							mysqli_close($connection);
+						}
+					?>
 					<?php unset($_POST['register']); ?>
 				<?php endif; ?>
 				<p id="formjs-error"></p>

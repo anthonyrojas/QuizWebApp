@@ -1,4 +1,4 @@
-<?php if(isset($_SESSION['loggedIn']) && isset($_SESSION['user']) && isset($_SESSION['password'])):?>
+<?php if(isset($_SESSION['user'])):?>
 	<nav>
 		<ul>
 			<li><a href="">Home</a></li>

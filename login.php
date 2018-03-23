@@ -1,5 +1,9 @@
 <?php
+	require_once 'config.php';
 	session_start();
+	if(isset($_SESSION['user'])){
+		header('Location: dashboard.php');
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,14 +34,38 @@
 			</div>
 		</div>
 		<div class="form-container-center">
-			<?php if(isset($_SUBMIT['register-form'])):?>
-				<h>Thanks for registering!</h>
-			<?php endif;?>
-			<form method="POST" id="register-well" name="login-form">
+			<form method="POST" id="register-well" name="login-form" onsubmit="return validateForm()" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 				<div class="form-group">
 					<i class="material-icons">&#xE853;</i>
 					<h3>Login</h3>
 					<br style="clear: both;">
+					<?php
+					if(isset($_POST['login'])){
+						$connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+						$email = mysqli_real_escape_string($connection, $_POST['email']);
+						$password = mysqli_real_escape_string($connection, $_POST['password']);
+						$query = "SELECT * FROM Users WHERE email='$email'";
+						$result = mysqli_query($connection, $query);
+						if($result->num_rows > 0){
+							while($row = $result->fetch_assoc()){
+								$queryPassword = $row['password'];
+								if(password_verify($password, $queryPassword)){
+									echo 'Successfully logged in! <br style="clear:both;">';
+									$_SESSION['loggedIn'] = 'yes';
+									$_SESSION['user'] = $row['email'];
+									header('Location: dashboard.php');
+								}else{
+									echo '<p class="form-server-error">Wrong password.</p>';
+									echo '<br style="clear:both;">';
+								}
+							}
+						}else{
+							echo '<p class="form-server-error">Invalid email.</p>';
+							echo '<br style="clear:both;">';
+						}
+						mysqli_close($connection);
+					}
+					?>
 					<p id="formjs-error"></p>
 					<br style="clear: both;">
 					<div class="form-group">
@@ -51,7 +79,7 @@
 					</div>
 					<br style="clear: both;">
 					<div class="form-group">
-						<button type="submit" class="btn-submit" value="submit"><span class="btn-submit-text">Login</span></button>
+						<button type="submit" class="btn-submit" value="login" name="login"><span class="btn-submit-text">Login</span></button>
 					</div>
 					<br style="clear: both;">
 					<hr>
