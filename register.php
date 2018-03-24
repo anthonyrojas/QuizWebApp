@@ -23,6 +23,7 @@
 	<link rel="stylesheet" type="text/css" href="css/animate.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Titillium+Web:600" rel="stylesheet">
+	<script type="text/javascript" src="js/index.js"></script>
 	<script type="text/javascript" src="js/register.js"></script>
 </head>
 <body>

@@ -1,5 +1,6 @@
 html, body{
 	height: 100% !important;
+	overflow-x: hidden;
 }
 body{
 	margin: 0 !important;
@@ -48,7 +49,7 @@ footer{
 	margin: 0;
 	position: relative;
 	padding: 1.5em 5em;
-	background-color: #FFC400;
+	background: linear-gradient(to bottom, #FFDE00, #00EF50);
 	color: #000;
 	background-repeat: none;
 	overflow: hidden;
@@ -100,6 +101,28 @@ div{
 	text-align: center;
 	display: table-cell;
 	overflow: hidden;
+	-webkit-animation-name: parallaxAnimation;
+	-webkit-animation-duration: 1.5s;
+	animation-name: parallaxAnimation;
+	animation-duration: 1.5s;
+}
+
+@-webkit-keyframes parallaxAnimation{
+	0%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+
+@keyframes parallaxAnimation{
+	0%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
 }
 
 #home-parallax{
@@ -237,6 +260,66 @@ input{
 	display: none;
 }
 
+.dashboard-main{
+	width: 100%;
+	display: inline-block;
+	padding: 0.5em 0;
+	background: -webkit-radial-gradient(ellipse top, #2A313C, #212732, #1E2229);
+	background: radial-gradient(ellipse at top, #2A313C, #212732, #1E2229);
+	min-height: 100vh;
+}
+
+.dashboard-header{
+	clear: both;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.dashboard-header h1{
+	background-color: #FFCC00;
+	color: linear-gradient(to bottom, #3C3B3A, #505050);
+	padding: 0.5em 1em;
+	border-radius: 0.5em;
+	display: inline-block;
+}
+
+.dashboard-header h3{
+	color: #FFCD00;
+	-webkit-animation-name: headerAnimation;
+	-webkit-animation-duration: 2s;
+	animation-name: headerAnimation;
+	animation-duration: 2s;
+	position: relative;
+}
+
+.dashboard-section{
+	padding: 0.5em 1em;
+}
+
+.dashboard-main hr{
+	background-color: #FFFFFF;
+	margin: auto;
+	border: 1px solid #FFFFFF;
+	z-index: 10000;
+}
+
+.dashboard-section-body{
+	color: #FFFFFF;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes headerAnimation {
+	0% {opacity: 0; top: 250px; }
+	100% {opacity: 1; top: 0px;}
+}
+
+/* Standard syntax */
+@keyframes headerAnimation {
+	0% {opacity: 0; top: 250px; }
+	100% {opacity: 1; top: 0px;}
+}
+
 @media only screen and (max-width: 480px){
 	.parallax-layer{
 		height: 100%;
@@ -257,6 +340,8 @@ input{
 		text-align: center;
 		display: table-cell;
 		overflow: hidden;
+		animation-name: parallaxAnimation;
+		animation-duration: 2s;
 	}
 
 	#home-parallax{
@@ -292,6 +377,8 @@ input{
 		text-align: center;
 		display: table-cell;
 		overflow: hidden;
+		animation-name: parallaxAnimation;
+		animation-duration: 2s;
 	}
 
 	#home-parallax{
