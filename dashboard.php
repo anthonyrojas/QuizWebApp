@@ -43,7 +43,7 @@ if(!isset($_SESSION['user'])){
 				<div class="dashboard-section-body">
 					<?php
 					$connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-					$query = "SELECT * FROM Users WHERE email='$_SESSION['user']'";
+					$query = "SELECT * FROM Users WHERE email='" . $_SESSION['user'] . "'";
 					$result = mysqli_query($connection, $query);
 					?>
 				</div>
