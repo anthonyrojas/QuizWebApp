@@ -52,7 +52,7 @@
 							$email = mysqli_real_escape_string($connection, $_POST['email']);
 							$password = mysqli_real_escape_string($connection, $_POST['password']);
 							$password = password_hash($password, PASSWORD_BCRYPT);
-							$userInsertQuery = "INSERT INTO Users (firstName, lastName, email, password) VALUES ('$firstName', '$lastName', '$email', '$password')";
+							$userInsertQuery = "INSERT INTO Users (FirstName, LastName, Email, Password) VALUES ('$firstName', '$lastName', '$email', '$password')";
 							mysqli_query($connection, $userInsertQuery);
 							mysqli_close($connection);
 						}

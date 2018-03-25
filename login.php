@@ -45,11 +45,11 @@
 						$connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 						$email = mysqli_real_escape_string($connection, $_POST['email']);
 						$password = mysqli_real_escape_string($connection, $_POST['password']);
-						$query = "SELECT * FROM Users WHERE email='$email'";
+						$query = "SELECT * FROM Users WHERE Email='$email'";
 						$result = mysqli_query($connection, $query);
 						if($result->num_rows > 0){
 							while($row = $result->fetch_assoc()){
-								$queryPassword = $row['password'];
+								$queryPassword = $row['Password'];
 								if(password_verify($password, $queryPassword)){
 									echo 'Successfully logged in! <br style="clear:both;">';
 									$_SESSION['loggedIn'] = 'yes';
