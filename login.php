@@ -53,7 +53,7 @@
 								if(password_verify($password, $queryPassword)){
 									echo 'Successfully logged in! <br style="clear:both;">';
 									$_SESSION['loggedIn'] = 'yes';
-									$_SESSION['user'] = $row['email'];
+									$_SESSION['user'] = $row['Email'];
 									header('Location: dashboard.php');
 								}else{
 									echo '<p class="form-server-error">Wrong password.</p>';

@@ -36,29 +36,48 @@ if(!isset($_SESSION['user'])){
 		<div class="dashboard-main">
 			<div class="dashboard-header"><h1>My Dashboard</h1></div>
 			<hr>
-			<div class="dashboard-section">
-				<div class="dashboard-header">
-					<h3>My Account</h3>
-				</div>
-				<div class="dashboard-section-body">
-					<?php
-					$connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-					$query = "SELECT * FROM Users WHERE email='" . $_SESSION['user'] . "'";
-					$result = mysqli_query($connection, $query);
-					?>
-				</div>
+			<div class="dashboard-section-header">
+				<h3>My Account</h3>
+			</div>
+			<div class="dashboard-section-body">
+				<?php
+				$connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+				$query = "SELECT * FROM Users WHERE Email='" . $_SESSION['user'] . "'";
+				$result = mysqli_query($connection, $query);
+				if($result->num_rows > 0){
+					while($row = $result->fetch_assoc()){
+						showAccountDetails($row);
+					}
+				}
+				?>
+				<?php
+				function showAccountDetails($userRow){
+					echo '<img src="media/profile_blank.png" class="profile-picture" alt="profile picture">';
+					echo "<p>" . $userRow['FirstName'] . "</p>";
+					echo "<p>" . $userRow['LastName'] . "</p>";
+					echo "<p>" . $userRow['Email'] . "</p>";
+				}
+				?>
 			</div>
 			<hr>
-			<div class="dashboard-section">
-				<div class="dashboard-header">
-					<h3>Quizzes</h3>
-				</div>
+			<div class="dashboard-section-header">
+				<h3>Quizzes</h3>
+			</div>
+			<div class="dashboard-section-body">
+				<?php
+				function showQuizzes($quizRow){
+				}
+				?>
 			</div>
 			<hr>
-			<div class="dashboard-section">
-				<div class="dashboard-header">
-					<h3>My Quizzes</h3>
-				</div>
+			<div class="dashboard-section-header">
+				<h3>My Quizzes</h3>
+			</div>
+			<div class="dashboard-section-body">
+				<?php
+				function showQuizzesAuthored(){
+				}
+				?>
 			</div>
 		</div>
 	</main>

@@ -128,7 +128,7 @@ div{
 #home-parallax{
 	width: 100%;
 	background-image: url("../media/images/quiz_home_banner.jpeg");
-	height: 30em;
+	height: 40em;
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -284,17 +284,14 @@ input{
 	display: inline-block;
 }
 
-.dashboard-header h3{
+.dashboard-section-header{
+	padding: 0.5em 1em;
 	color: #FFCD00;
 	-webkit-animation-name: headerAnimation;
 	-webkit-animation-duration: 2s;
 	animation-name: headerAnimation;
 	animation-duration: 2s;
 	position: relative;
-}
-
-.dashboard-section{
-	padding: 0.5em 1em;
 }
 
 .dashboard-main hr{
@@ -306,6 +303,13 @@ input{
 
 .dashboard-section-body{
 	color: #FFFFFF;
+	padding: 0em 2em 1em 2em;
+	display: block;
+}
+
+.profile-picture{
+	display: inline-block;
+	max-width: 250px;
 }
 
 /* Safari 4.0 - 8.0 */
