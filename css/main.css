@@ -307,11 +307,35 @@ input{
 	display: block;
 }
 
+#create-quiz-btn{
+	background-color: #13BA07;
+	border: none;
+	border-radius: 1em;
+	padding: 0.5em 1em;
+}
+
+#create-quiz-btn:hover{
+	background-color: #15D707;
+}
+#create-quiz-btn:active{
+	background-color: #15D707;
+}
 .profile-picture{
 	display: inline-block;
 	max-width: 250px;
 }
-
+.quiz-make-body-section label{
+	margin: 1em 0.5em;
+	float: left;
+	color: white;
+}
+.quiz-make-body-section textarea{
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: auto;
+    width: 90%;
+}
 /* Safari 4.0 - 8.0 */
 @-webkit-keyframes headerAnimation {
 	0% {opacity: 0; top: 250px; }

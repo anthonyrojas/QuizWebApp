@@ -13,17 +13,15 @@ if(!isset($_SESSION['user'])){
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 	<script type="text/javascript" src="js/index.js"></script>
 	<!--animate css grabbed from Dan Eden on github-->
-	<link rel="stylesheet" type="text/css" href="css/animate.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Titillium+Web:600" rel="stylesheet">
-	<script type="text/javascript" src="js/index.js"></script>
 </head>
 <body>
 	<?php include 'nav.php' ?>
@@ -65,7 +63,20 @@ if(!isset($_SESSION['user'])){
 			</div>
 			<div class="dashboard-section-body">
 				<?php
+				$quizQuery = "SELECT * FROM UserQuizzes WHERE UserEmail='" . $_SESSION['user'] . "'";
+				$quizResults = mysqli_query($connection, $quizQuery);
+				if($quizResults->num_rows > 0){
+					while($row=$quizResults->fetch_assoc()){
+						showQuizzes($row);
+					}
+				}else{
+					noQuizzes();
+				}
 				function showQuizzes($quizRow){
+					echo "<p>" . quizRow['QuizID'] . "</p>";
+				}
+				function noQuizzes(){
+					echo "<p>No quizzes found that you have been invited to.</p>";
 				}
 				?>
 			</div>
@@ -74,12 +85,28 @@ if(!isset($_SESSION['user'])){
 				<h3>My Quizzes</h3>
 			</div>
 			<div class="dashboard-section-body">
+				<form action="makequiz.php">
+					<button onclick="submit" id="create-quiz-btn">Create Quiz</button>
+				</form>
 				<?php
-				function showQuizzesAuthored(){
+				$quizzesMadeQuery = "SELECT * FROM Quiz WHERE Email='" . $_SESSION['user'] . "'";
+				$quizzesMadeResults = mysqli_query($connection, $quizzesMadeQuery);
+				if($quizResults->num_rows > 0){
+					while($row=$quizzesMadeResults->fetch_assoc()){
+						showQuizzesAuthored($row);
+					}
+				}else{
+					noQuizzesAuthored();
+				}
+				function showQuizzesAuthored($myQuizRow){
+				}
+				function noQuizzesAuthored(){
+					echo "<p>You have not made any quizzes.</p>";
 				}
 				?>
 			</div>
 		</div>
+		<?php mysqli_close($connection) ?>
 	</main>
 	<?php include 'footer.php';?>
 </body>
